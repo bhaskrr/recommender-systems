@@ -9,6 +9,7 @@ A structured, hands-on learning repository covering recommender systems. Built p
 ### 1. [Foundational Paradigms](./01-foundational-paradigms/)
 
 1. [Content-Based Filtering](./01-foundational-paradigms/01-content-based-filtering/)
+2. [Collaborative Filtering](./01-foundational-paradigms/02-collaborative-filtering/)
 
 ---
 
