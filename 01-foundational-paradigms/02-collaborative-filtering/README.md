@@ -42,7 +42,7 @@ The steps of collaborative filtering generally follow a,memory-based or model-ba
       - Explicit Feedback: Direct user ratings (e.g., 1–5 stars).
       - Implicit Feedback: Observed behaviors like clicks, views, downloads, or purchase history.
    - Matrix Structure: Rows represent users, columns represent items and cells contain the interaction value.
-   - Sparsity Challenge: In real-world systems, most cells are empty (null) because users only interact with a small fraction of available items. 
+   - Sparsity Challenge: In real-world systems, most cells are empty (null) because users only interact with a small fraction of available items.
 
 2. **Data Preprocessing**: Raw data is cleaned to ensure consistency and improve model accuracy.
 
@@ -50,7 +50,7 @@ The steps of collaborative filtering generally follow a,memory-based or model-ba
     - Normalization:
         - Mean-Centering: Subtracting a user’s average rating from each of their ratings to account for "tough" vs. "generous" raters.
         - Z-Score: Adjusting for both mean and variance in user rating patterns.
-    - Filtering: Removing users or items with too few interactions to provide reliable data. 
+    - Filtering: Removing users or items with too few interactions to provide reliable data.
 
 3. **Similarity Computation**: The system determines "proximity" in vector space using mathematical metrics.
 
@@ -60,7 +60,7 @@ The steps of collaborative filtering generally follow a,memory-based or model-ba
     - Key Metrics:
         - Cosine Similarity: Measures the angle between two vectors; values range from -1 to 1.
         - Pearson Correlation (PCC): Measures how two sets of ratings linearly relate, correcting for user bias.
-        - Jaccard Similarity: Used primarily for binary (yes/no) interaction data. 
+        - Jaccard Similarity: Used primarily for binary (yes/no) interaction data.
 
 4. **Prediction and Generation**:
 Once similarities are calculated, the system predicts values for the "null" cells in the matrix.
