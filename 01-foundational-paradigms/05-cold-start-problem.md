@@ -156,6 +156,7 @@ A new user signs up on Netflix. The system has no viewing history. It cannot kno
 A **new item** (product, movie, song, article) is added to the catalog with no interaction history. Collaborative filtering cannot recommend it because no user has rated or interacted with it.
 
 **Characteristics:**
+
 - Item exists in the catalog but has zero or very few ratings/interactions
 - May have rich metadata (description, genre, price, author, tags)
 - Creates a **discoverability problem** — good items may never surface
@@ -171,6 +172,7 @@ A newly published book on Amazon has no reviews. Standard collaborative filterin
 A **new system** has no users, no items, and no interactions. This is the bootstrapping problem faced when launching a recommendation platform from scratch.
 
 **Characteristics:**
+
 - The entire interaction matrix is empty or near-empty
 - No historical data to learn from at all
 - Often underestimated in system design
@@ -187,7 +189,7 @@ A related but often conflated issue: users with very few interactions who don't 
 
 **Characteristics:**
 
-- Has *some* data, but not enough for confident prediction
+- Has _some_ data, but not enough for confident prediction
 - May have highly idiosyncratic tastes not matching any cluster
 - Collaborative filtering struggles to find reliable neighbors
 
@@ -200,6 +202,7 @@ Understanding the root causes helps in designing principled solutions.
 ### 3.1 The Interaction Sparsity Root Cause
 
 Most real-world interaction matrices are **extremely sparse**. A typical e-commerce platform may have:
+
 - Millions of users
 - Millions of products
 - But each user interacts with only ~0.01–0.1% of the catalog
@@ -222,16 +225,16 @@ Explicit feedback (ratings) is rare. Most systems rely on implicit feedback (cli
 
 ## 4. Impact on Different Recommendation Paradigms
 
-| Paradigm | Cold Start Sensitivity | Reason |
-|---|---|---|
-| **Collaborative Filtering (User-User)** | Very High | Requires interaction history to find similar users |
-| **Collaborative Filtering (Item-Item)** | High | Requires items to have been rated by common users |
-| **Matrix Factorization (MF)** | Very High | Latent factors cannot be learned without interactions |
-| **Content-Based Filtering** | Low | Uses item/user attributes, not interactions |
-| **Knowledge-Based** | Very Low | Uses explicit constraints and domain rules |
-| **Hybrid Systems** | Medium | Depends on how components are combined |
-| **Deep Learning (NCF, etc.)** | High | Embedding-based, still needs interaction signal |
-| **Session-Based** | Low-Medium | Can work within a single session without history |
+| Paradigm                                | Cold Start Sensitivity | Reason                                                |
+| --------------------------------------- | ---------------------- | ----------------------------------------------------- |
+| **Collaborative Filtering (User-User)** | Very High              | Requires interaction history to find similar users    |
+| **Collaborative Filtering (Item-Item)** | High                   | Requires items to have been rated by common users     |
+| **Matrix Factorization (MF)**           | Very High              | Latent factors cannot be learned without interactions |
+| **Content-Based Filtering**             | Low                    | Uses item/user attributes, not interactions           |
+| **Knowledge-Based**                     | Very Low               | Uses explicit constraints and domain rules            |
+| **Hybrid Systems**                      | Medium                 | Depends on how components are combined                |
+| **Deep Learning (NCF, etc.)**           | High                   | Embedding-based, still needs interaction signal       |
+| **Session-Based**                       | Low-Medium             | Can work within a single session without history      |
 
 ---
 
@@ -282,6 +285,7 @@ Ask users directly about their preferences during signup.
 Use available user attributes (age, location, device type, referral source) to bootstrap recommendations.
 
 **Approach:**
+
 1. Segment existing users by demographic profiles
 2. Compute average preferences per segment
 3. Assign new users to segments and use segment-level recommendations
@@ -366,7 +370,7 @@ Train a model that can quickly adapt to a new user's preferences with only a few
 - **Prototypical Networks** — Map users to a prototype space; new users are placed relative to known prototypes
 - **MeLU** — Meta-learning for user cold start in recommender systems (He et al., 2020)
 
-**Intuition:** Instead of learning preferences for known users, learn *how to learn preferences quickly* for any new user.
+**Intuition:** Instead of learning preferences for known users, learn _how to learn preferences quickly_ for any new user.
 
 ---
 
@@ -429,8 +433,8 @@ Recommend items with zero or very few interactions using only their content desc
 **LLM-based approach:**
 
 ```bash
-Prompt: "The user has previously liked: [item A, item B, item C]. 
-         Given a new item with description [X], would this user like it? 
+Prompt: "The user has previously liked: [item A, item B, item C].
+         Given a new item with description [X], would this user like it?
          Explain your reasoning."
 ```
 
@@ -516,16 +520,17 @@ Combine collaborative filtering with content-based filtering to handle cold star
 
 **Combination strategies:**
 
-| Strategy | Description |
-|---|---|
-| **Weighted hybrid** | Linear combination of CF and CB scores |
-| **Switching hybrid** | Use CB when cold, switch to CF when warm |
-| **Feature augmentation** | Use CB features as input to CF model |
-| **Cascade hybrid** | CB filters candidates, CF re-ranks them |
-| **Mixed hybrid** | Display both CF and CB recommendations |
+| Strategy                 | Description                              |
+| ------------------------ | ---------------------------------------- |
+| **Weighted hybrid**      | Linear combination of CF and CB scores   |
+| **Switching hybrid**     | Use CB when cold, switch to CF when warm |
+| **Feature augmentation** | Use CB features as input to CF model     |
+| **Cascade hybrid**       | CB filters candidates, CF re-ranks them  |
+| **Mixed hybrid**         | Display both CF and CB recommendations   |
 
 **Switching hybrid is most practical for cold start:**
-```
+
+```bash
 if user_interactions < threshold:
     recommend_using_content_based(user)
 else:
@@ -662,7 +667,7 @@ Use LLMs to generate rich descriptive features for new items:
 
 ```bash
 Input: "New product: Noise-cancelling headphones, $299, Bluetooth 5.0, 30hr battery"
-Output: "Premium audio device targeting professionals and frequent travelers who value 
+Output: "Premium audio device targeting professionals and frequent travelers who value
          uninterrupted focus and long commutes..."
 ```
 
@@ -703,7 +708,7 @@ These richer descriptions improve content-based cold start performance significa
 - **Content-based filtering** — Product descriptions, categories, attributes
 - **Seller-provided data** — Rich product metadata at listing time
 - **Cross-category transfer** — "Customers who bought X also bought Y" works across categories
-- **Session-based signals** — What is the user browsing *right now*?
+- **Session-based signals** — What is the user browsing _right now_?
 
 ### 12.4 TikTok
 
@@ -805,7 +810,7 @@ Plot metrics vs. number of interactions to understand the warm-up curve.
 
 ### "Our system doesn't have a cold start problem because we collect enough data"
 
-**Reality:** Every new user and every new item starts cold. The question is how *quickly* you resolve it, not whether it exists.
+**Reality:** Every new user and every new item starts cold. The question is how _quickly_ you resolve it, not whether it exists.
 
 ### "Content-based filtering fully solves item cold start"
 
@@ -837,7 +842,7 @@ Meta-learning approaches show promise, but generalizing to diverse domains with 
 
 ### 16.3 Causal Cold Start
 
-Most cold start solutions are correlational. Causal approaches — asking "would this user like this item *if* they were exposed?" — remain underexplored.
+Most cold start solutions are correlational. Causal approaches — asking "would this user like this item _if_ they were exposed?" — remain underexplored.
 
 ### 16.4 Cold Start with LLMs at Scale
 
