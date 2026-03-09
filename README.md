@@ -12,6 +12,7 @@ A structured, hands-on learning repository covering recommender systems. Built p
 2. [Collaborative Filtering](./01-foundational-paradigms/02-collaborative-filtering/)
 3. [Hybrid Recommendation](./01-foundational-paradigms//03-hybrid/)
 4. [Feedback Mechanisms](./01-foundational-paradigms//04-feedbacks.md)
+5. [Cold-Start Problem](./01-foundational-paradigms//05-cold-start-problem.md)
 
 ---
 
