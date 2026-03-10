@@ -25,3 +25,47 @@ Your instinct from general ML might be to use accuracy; what fraction of recomme
 This is why RecSys has its own family of evaluation metrics, built specifically to handle sparsity and rank sensitivity.
 
 ---
+
+## What Good Evaluation Actually Measures
+
+A well-designed evaluation framework for RecSys needs to answer several distinct questions simultaneously:
+
+**Relevance** — Are the recommended items actually useful to the user? This is the baseline. A recommendation that nobody wants is worthless regardless of how technically sophisticated the model is.
+
+**Rank quality** — Are the most relevant items appearing at the top of the list? A system that buries the best recommendation at position 9 out of 10 is nearly as bad as not recommending it at all. Users rarely scroll past the first few results.
+
+**Coverage** — Does the system recommend across a wide range of items, or does it only push popular items? A system that only ever recommends the top 100 most popular movies has poor coverage even if those recommendations are technically relevant.
+
+**Serendipity** — Does the system ever surface something genuinely surprising and delightful? Pure relevance optimization often produces obvious recommendations. Serendipity measures the system's ability to introduce users to things outside their established taste profile.
+
+**Novelty** — Are the recommendations things the user hasn't already seen or discovered on their own? Recommending *The Godfather* to a film enthusiast is not novel.
+
+**Diversity** — Within a single recommendation list, are the items varied? Ten similar items in a single list is a poor experience even if each item is individually relevant.
+
+Most evaluation frameworks focus heavily on relevance and rank quality because they're measurable offline. Coverage, serendipity, novelty, and diversity often require online evaluation (A/B tests) or carefully designed user studies.
+
+---
+
+## The Two Evaluation Paradigms
+
+### Offline Evaluation
+
+You hold out a portion of known user interactions as a test set, pretend the model hasn't seen them, generate recommendations, and measure how well the model recovers those held-out interactions.
+
+**Advantages:** Fast, cheap, reproducible, no users required.
+
+**Disadvantages:** Deeply limited by what you already know. You can only evaluate against items the user has already interacted with. Items the user would have loved but never encountered are invisible to offline evaluation — this is called **exposure bias**.
+
+Offline evaluation is where NDCG, MRR, Precision@K, and most other metrics you'll learn live.
+
+### Online Evaluation (A/B Testing)
+
+You deploy two versions of the system to real users simultaneously and measure actual behavior — clicks, purchases, watch time, return visits.
+
+**Advantages:** Measures real impact. Captures the full user experience including serendipity and novelty. Ground truth is actual behavior, not historical proxies.
+
+**Disadvantages:** Expensive, slow, requires infrastructure, and introduces real risk (a bad recommendation system can genuinely harm user experience and business metrics).
+
+In production systems, offline evaluation narrows the candidate models and online evaluation makes the final call.
+
+---
