@@ -69,3 +69,43 @@ You deploy two versions of the system to real users simultaneously and measure a
 In production systems, offline evaluation narrows the candidate models and online evaluation makes the final call.
 
 ---
+
+## The Relevance Assumption
+
+Almost all offline metrics share one critical assumption:
+
+> **An item is either relevant or not relevant to a user.**
+
+In the binary case (which you'll encounter first), relevance is a 0 or 1 judgment — the user either interacted with the item or didn't. In the graded case (which NDCG handles), relevance exists on a scale — a 5-star rating is more relevant than a 3-star rating.
+
+This assumption has a subtle but important flaw: **absence of interaction ≠ irrelevance**. A user who never watched *Arrival* might love it — they just haven't seen it yet. Offline evaluation is blind to this. Every metric you learn carries this caveat implicitly.
+
+---
+
+## The Evaluation Pipeline
+
+In practice, offline evaluation follows this standard protocol:
+
+```mermaid
+    flowchart LR
+        A[Full interaction data] --> B[Train Set] --> C[Validation] --> D[Test Set]
+```
+
+For each user in test set:
+
+1. Generate top-K recommendations (excluding training items)
+2. Compare against held-out test interactions
+3. Compute metrics (Precision@K, NDCG@K, MRR, Hit Rate)
+4. Average across all users → final score
+
+The most common split strategy in RecSys is **leave-one-out** - hold out the last item each user interacted with as the test item. This is different from random splitting because it respects the temporal ordering of interactions, which matters especially for sequential models.
+
+## Summary
+
+| Question | What it measures |
+|---|---|
+| Are items relevant? | Precision, Recall, F-measure |
+| Are relevant items ranked high? | NDCG, MAP, MRR |
+| Does the system cover the catalog? | Coverage |
+| Does it surface surprising items? | Serendipity, Novelty |
+| Is the list internally varied? | Diversity |
