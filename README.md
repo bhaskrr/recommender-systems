@@ -14,6 +14,10 @@ A structured, hands-on learning repository covering recommender systems. Built p
 4. [Feedback Mechanisms](./01-foundational-paradigms//04-feedbacks.md)
 5. [Cold-Start Problem](./01-foundational-paradigms//05-cold-start-problem.md)
 
+### 2. [Evaluation](./02-evaluation/)
+
+1. [Binary Relevance Metrics](./02-evaluation/03-binary-relevance-metrics/)
+
 ---
 
 Built as part of a structured self-study curriculum. Each module's README contains full theory notes alongside the code.
