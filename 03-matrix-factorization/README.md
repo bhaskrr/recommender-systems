@@ -49,8 +49,8 @@ Before diving into implementations, understand this distinction - it affects eve
 **Implicit feedback:** Behavior that implies preference without stating it. Clicks, purchases, watch time, streams, page views. Abundant but noisy — a click doesn't mean the user liked something, and no click doesn't mean they didn't.
 
 ```latex
-Explicit:  r_ui ∈ {1, 2, 3, 4, 5}   — directly observed preference
-Implicit:  r_ui ∈ {0, 1}             — 1 = interacted, 0 = unknown
+Explicit:  r_ui ∈ {1, 2, 3, 4, 5}   - directly observed preference
+Implicit:  r_ui ∈ {0, 1}             - 1 = interacted, 0 = unknown
                                         (not "disliked", just "not observed")
 ```
 
@@ -70,16 +70,16 @@ Run the downloader notebook at `datasets/download_datasets.ipynb`.
 
 ## Concepts Introduced in This Module
 
-| Concept | Where |
-|---------|-------|
-| Latent factor model | SVD |
-| Truncated SVD | SVD |
-| SGD for MF | SVD |
-| User/item bias terms | SVD |
-| Alternating Least Squares | ALS |
-| Confidence-weighted implicit feedback | ALS |
-| Non-negative constraints | NMF |
-| Parts-based representation | NMF |
-| Pairwise ranking loss | BPR |
-| Negative sampling | BPR |
-| Implicit feedback modeling | BPR |
+| Concept                               | Where |
+| ------------------------------------- | ----- |
+| Latent factor model                   | SVD   |
+| Truncated SVD                         | SVD   |
+| SGD for MF                            | SVD   |
+| User/item bias terms                  | SVD   |
+| Alternating Least Squares             | ALS   |
+| Confidence-weighted implicit feedback | ALS   |
+| Non-negative constraints              | NMF   |
+| Parts-based representation            | NMF   |
+| Pairwise ranking loss                 | BPR   |
+| Negative sampling                     | BPR   |
+| Implicit feedback modeling            | BPR   |
