@@ -16,7 +16,12 @@ A structured, hands-on learning repository covering recommender systems. Built p
 
 ### 2. [Evaluation](./02-evaluation/)
 
-1. [Binary Relevance Metrics](./02-evaluation/03-binary-relevance-metrics/)
+1. [Why Evaluation Matters](./02-evaluation/01-why-evaluation.md)
+2. [Test Evaluation](./02-evaluation/02-test-evaluations.md)
+3. [Binary Relevance Metrics](./02-evaluation/03-binary-relevance-metrics/)
+4. [Ranked Retrieval Metrics](./02-evaluation/04-ranked-retrieval-metrics/)
+5. [Beyond Relevance Measures](./02-evaluation/05-beyond-relevance.md)
+6. [Benchmarks](./02-evaluation/06-benchmarks.md)
 
 ---
 
